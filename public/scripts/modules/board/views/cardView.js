@@ -10,7 +10,7 @@ define(["text!../templates/card.html","../models/card", "../events/postal"],func
     events: {
       "moved" : "moved",
       "click .milestone": "publishFilter",
-      "click .close": "closed",
+      //"click .close": "closed",
       "drop" : "drop"
     },
     tagName:"li",
@@ -41,14 +41,14 @@ define(["text!../templates/card.html","../models/card", "../events/postal"],func
     moved: function(ev,index){
       this.issue.save({index: index});
     },
-    closed: function(ev, index){
-      this.issue.close({index: index});
-      this.remove();
-    },
+    //closed: function(ev, index){
+    //  this.issue.close({index: index});
+    //  this.remove();
+    //},
     publishFilter: function() {
       var self = this;
-      postal.publish("Filter.Milestone", 
-                     function (issue) { 
+      postal.publish("Filter.Milestone",
+                     function (issue) {
                        return issue.milestone ? issue.milestone.number === self.issue.attributes.milestone.number : false;
                      });
     },
